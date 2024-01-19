@@ -1,8 +1,8 @@
-# Cloudflared DNS over HTTPS
-Installation for Cloudflared DOH on Raspberry Pi OS. This is an ansible playbook of the documentation found at https://docs.pi-hole.net/guides/dns/cloudflared/#configuring-dns-over-https
+# Configuring prometheus.yml on a unraid via Ansible using the host list
+Configure prometheus.yml file on Unraid via Ansible using the host list
 
 # Ansible Galaxy
-https://galaxy.ansible.com/ui/standalone/roles/derekpurdy/cloudflared_doh
+[https://galaxy.ansible.com/ui/standalone/roles/derekpurdy/cloudflared_doh](https://galaxy.ansible.com/ui/standalone/roles/derekpurdy/configure_prometheus_unraid/)
 
 ## Ansible hosts file example
 
