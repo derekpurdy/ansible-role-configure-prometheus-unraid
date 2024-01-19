@@ -26,11 +26,13 @@ scrape_configs:
   ## Host Monitoring
   - job_name: "Host Monitoring"
     static_configs:
-{% for host in hostvars %}
-{% if hostvars[host].prometheus_monitored is true %}
+{% for host in hostvars|sort %}
+{% if hostvars[host].prometheus_monitored is not false %}
       - targets: ['{{ host }}:{{ hostvars[host].prometheus_port | default(9100) }}']
         labels:
           hostname: '{{ host }}'
+{% if hostvars[host].prometheus_env is defined %}
           env: '{{ hostvars[host].prometheus_env }}'
+{% endif %}
 {% endif %}
 {% endfor %}
