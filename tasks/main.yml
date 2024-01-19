@@ -1,0 +1,10 @@
+---
+# tasks file for derekpurdy.configure_prometheus_targets
+
+- name: 'Configure Prometheus yml file'
+  ansible.builtin.template:
+    src: "{{ prometheus_config_file }}"
+    dest: "{{ prometheus_config_dir }}/prometheus.yml"
+    mode: 0644
+  notify:
+    - 'Restart Prometheus docker container'

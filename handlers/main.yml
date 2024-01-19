@@ -1,0 +1,5 @@
+---
+
+- name: 'Restart Prometheus docker container'
+  ansible.builtin.command:
+    cmd: docker restart '{{ prometheus_container_name }}'

@@ -1,0 +1,10 @@
+---
+# defaults file for derekpurdy.configure_prometheus_targets
+
+prometheus_config_dir: '/mnt/user/appdata/prometheus/etc'
+prometheus_config_file: 'prometheus.yml.j2'
+
+prometheus_port: 9100
+prometheus_monitored: true
+
+prometheus_container_name: 'prometheus'

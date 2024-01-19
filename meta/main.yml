@@ -1,0 +1,15 @@
+---
+
+galaxy_info:
+  role_name: configure_prometheus_unraid
+  author: derekpurdy
+  description: Configure Prometheus yml file on Unraid share via Ansible using the host list in Ansible
+  license: MIT
+  min_ansible_version: "2.10"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - jammy
+  galaxy_tags:
+    - unraid
+    - prometheus
