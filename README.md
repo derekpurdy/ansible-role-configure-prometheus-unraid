@@ -2,7 +2,7 @@
 Configure prometheus.yml file on Unraid via Ansible using the host list
 
 # Ansible Galaxy
-[https://galaxy.ansible.com/ui/standalone/roles/derekpurdy/cloudflared_doh](https://galaxy.ansible.com/ui/standalone/roles/derekpurdy/configure_prometheus_unraid/)
+https://galaxy.ansible.com/ui/standalone/roles/derekpurdy/configure_prometheus_unraid
 
 ## Ansible hosts file example
 
