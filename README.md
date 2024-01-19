@@ -25,6 +25,10 @@ https://galaxy.ansible.com/ui/standalone/roles/derekpurdy/configure_prometheus_u
       roles:
         - role: derekpurdy.configure_prometheus_unraid
 
+## group_vars/all/vars.yml example
+    prometheus_env: 'ENV NAME'
+    alertmanager_host: 'alertmanager.lan'
+
 
 ## Author Information
 This role was created by Derek Purdy
