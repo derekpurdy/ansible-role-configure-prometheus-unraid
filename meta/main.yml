@@ -5,7 +5,7 @@ galaxy_info:
   author: derekpurdy
   description: Configure prometheus.yml file on Unraid share via Ansible using the host list
   license: MIT
-  min_ansible_version: "2.10"
+  min_ansible_version: '2.10'
   platforms:
     - name: Ubuntu
       versions:
