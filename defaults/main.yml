@@ -8,3 +8,6 @@ prometheus_port: 9100
 prometheus_monitored: true
 
 prometheus_container_name: 'prometheus'
+
+alertmanager_host: 'alertmanager'
+alertmanager_port: '9093'
