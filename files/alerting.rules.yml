@@ -1,14 +1,14 @@
 ---
 
 groups:
-- name: ServerDown
-  rules:
-  # Alert for any instance that is unreachable for >1 minute.
-  - alert: ServerDown
-    expr: up == 0
-    for: 1m
-    labels:
-      severity: page
-    annotations:
-      summary: "Server {{ $labels.instance }} down"
-      description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute."
+  - name: ServerDown
+    rules:
+      # Alert for any instance that is unreachable for >1 minute.
+      - alert: ServerDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: page
+        annotations:
+          summary: "Server {{ $labels.instance }} down"
+          description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute."
