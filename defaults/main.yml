@@ -11,3 +11,4 @@ prometheus_container_name: 'prometheus'
 
 alertmanager_host: 'alertmanager'
 alertmanager_port: '9093'
+alertmanager_enable_host_down_alert: true
