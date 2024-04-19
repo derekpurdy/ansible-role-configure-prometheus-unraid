@@ -3,3 +3,5 @@
 - name: 'Restart Prometheus docker container'
   ansible.builtin.command:
     cmd: docker restart '{{ prometheus_container_name }}'
+  register: command_output
+  changed_when: command_output.rc == 0
