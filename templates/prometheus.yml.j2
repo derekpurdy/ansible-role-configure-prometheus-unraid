@@ -39,3 +39,9 @@ scrape_configs:
 {% endif %}
 {% endif %}
 {% endfor %}
+
+  ## Host Monitoring
+  - job_name: "Additional Monitoring"
+    file_sd_configs:
+      - files:
+        - /etc/prometheus/targets/*.yml
