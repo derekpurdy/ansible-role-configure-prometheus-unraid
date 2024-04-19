@@ -5,6 +5,6 @@
   ansible.builtin.template:
     src: "{{ prometheus_config_file }}"
     dest: "{{ prometheus_config_dir }}/prometheus.yml"
-    mode: 644
+    mode: "0644"
   notify:
     - 'Restart Prometheus docker container'
