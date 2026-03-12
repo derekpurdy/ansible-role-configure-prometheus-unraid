@@ -3,13 +3,18 @@
 galaxy_info:
   role_name: configure_prometheus_unraid
   author: derekpurdy
-  description: Configure prometheus.yml file on Unraid via Ansible using the Ansible hosts list
+  description: Configure prometheus.yml file on Unraid via Ansible using the Ansible hosts list with validation and health checks
   license: MIT
   min_ansible_version: '2.10'
   platforms:
     - name: Ubuntu
       versions:
         - jammy
+    - name: Debian
+      versions:
+        - bookworm
   galaxy_tags:
     - unraid
     - prometheus
+    - monitoring
+    - configuration

@@ -1,7 +1,31 @@
 ---
 
 - name: 'Restart Prometheus docker container'
-  ansible.builtin.command:
-    cmd: docker restart '{{ prometheus_container_name }}'
-  register: command_output
-  changed_when: command_output.rc == 0
+  block:
+    - name: 'Check if Prometheus container exists'
+      ansible.builtin.command:
+        cmd: docker ps -a --filter "name=^{{ prometheus_container_name }}$" --format '{{ "{{" }}.Names{{ "}}" }}'
+      register: container_check
+      changed_when: false
+      failed_when: false
+
+    - name: 'Fail if container does not exist'
+      ansible.builtin.fail:
+        msg: "Prometheus container '{{ prometheus_container_name }}' not found"
+      when: container_check.stdout == ''
+
+    - name: 'Restart Prometheus container'
+      ansible.builtin.command:
+        cmd: docker restart '{{ prometheus_container_name }}'
+      register: restart_output
+      changed_when: restart_output.rc == 0
+
+    - name: 'Verify container is running'
+      ansible.builtin.command:
+        cmd: docker ps --filter "name=^{{ prometheus_container_name }}$" --format '{{ "{{" }}.State{{ "}}" }}'
+      register: container_status
+      failed_when: "'running' not in container_status.stdout"
+      changed_when: false
+  tags:
+    - prometheus
+    - skip_ansible_lint

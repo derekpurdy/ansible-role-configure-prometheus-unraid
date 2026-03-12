@@ -1,14 +1,20 @@
 ---
 # defaults file for derekpurdy.configure_prometheus_targets
 
+# Prometheus configuration location (must be accessible to the container)
 prometheus_config_dir: '/mnt/user/appdata/prometheus/etc'
 prometheus_config_file: 'prometheus.yml.j2'
 
+# Node exporter port - used when discovering hosts from inventory
 prometheus_port: 9100
+
+# Whether this host should be included in prometheus monitoring
 prometheus_monitored: true
 
+# Docker configuration
 prometheus_container_name: 'prometheus'
 
+# Alertmanager configuration
 alertmanager_host: 'alertmanager'
-alertmanager_port: '9093'
+alertmanager_port: 9093
 alertmanager_enable_host_down_alert: true
