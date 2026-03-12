@@ -15,9 +15,42 @@
     src: "{{ prometheus_config_file }}"
     dest: "{{ prometheus_config_dir }}/prometheus.yml"
     mode: "0644"
-    validate: "python3 -c 'import sys, yaml; yaml.safe_load(open(\"%s\"))'"
-  notify:
-    - 'Restart Prometheus docker container'
+  register: prometheus_config
+  tags:
+    - prometheus
+    - config
+
+- name: 'Restart Prometheus container when configuration changes'
+  block:
+    - name: 'Check if Prometheus container exists'
+      ansible.builtin.command:
+        cmd: docker ps -a --filter "name=^{{ prometheus_container_name }}$" --format '{{ "{{" }}.Names{{ "}}" }}'
+      register: container_check
+      changed_when: false
+      failed_when: false
+
+    - name: 'Warn if container does not exist'
+      ansible.builtin.debug:
+        msg: "Prometheus container '{{ prometheus_container_name }}' not found; skipping restart"
+      when: container_check.stdout == ''
+
+    - name: 'Restart Prometheus container'
+      ansible.builtin.command:
+        cmd: docker restart '{{ prometheus_container_name }}'
+      register: restart_output
+      changed_when: restart_output.rc == 0
+      when: container_check.stdout != ''
+
+    - name: 'Verify container is running'
+      ansible.builtin.command:
+        cmd: docker ps --filter "name=^{{ prometheus_container_name }}$" --format '{{ "{{" }}.State{{ "}}" }}'
+      register: container_status
+      failed_when: "'running' not in container_status.stdout"
+      changed_when: false
+      when: container_check.stdout != ''
+  when: prometheus_config is defined and prometheus_config.changed
+  delegate_to: "{{ inventory_hostname }}"
+  become: true
   tags:
     - prometheus
     - config

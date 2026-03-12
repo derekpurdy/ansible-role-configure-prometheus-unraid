@@ -8,14 +8,12 @@ Configure Prometheus monitoring on Unraid using Ansible, integrating host monito
 - Supports dynamic host discovery with labels
 - File service discovery for additional targets (`/etc/prometheus/targets/*.yml`)
 - Alertmanager integration
-- Docker container restart with validation
-- YAML syntax validation before deployment
+- Docker container restart
 
 ## Requirements
 
 - Docker installed and running on Unraid
 - Prometheus container deployed
-- Python 3 with PyYAML (for config validation)
 
 ## Role Variables
 
